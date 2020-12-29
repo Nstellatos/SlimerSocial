@@ -1,2 +1,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.recipe {
+    height: 350px;
+    width: 250px;
+    position: relative;
+    box-shadow: 10px 10px 5px #888888;
+    background: #e6f0f7 ;
+}
+.recipe-show {
+    height:475px; 
+    width: 325px;
+}

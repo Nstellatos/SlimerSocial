@@ -1,6 +1,14 @@
 <h1> Index </h1>
-<% @recipes.each do |recipe| %>
-<h2> <%= link_to recipe.title, recipe_path(recipe) %></h2>
+<div class="container">
+<div class="row">
+    <% @recipes.each do |recipe| %>
+<div class="col-md-4">
+    <a href="/recipes/<%= recipe.id %>">
+    <%= image_tag recipe.recipe_img.url(:recipe_index), class: "recipe" %></a>
+    <h2> <%= link_to recipe.title, recipe_path(recipe) %></h2>
+
 <% end %>
 
-<%= link_to "Add Recipe", new_recipe_path %>
+    </div>
+</div>
+</div>
