@@ -16,6 +16,12 @@
 
 	<div class="col-md-4">
 <!-- Where the reviews/ratings will go -->
+    <%= render @recipe.reviews %>
+        <div>
+            <%= link_to "Add Review", new_recipe_review_path(@recipe) %>
+
+
+        </div>
 
     </div>	
 
