@@ -5,8 +5,12 @@ class RecipesController < ApplicationController
     end
 
     def show 
-    end
-
+        if @recipe.reviews.blank?
+			@average_review = 0
+		else
+			@average_review = @recipe.reviews.average(:rating).round(2)
+		end
+	end
     def new 
         @recipe = current_user.recipes.build
     end
