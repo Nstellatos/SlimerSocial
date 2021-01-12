@@ -5,11 +5,33 @@
 </div>
 
 <div class="col-md-8">
-    <h2> <%= @recipe.title %> </h2>
-    <h2>Average Rating</h2>
+<div class="recipe-info">
+    <h1 class="recipe-title"> <%= @recipe.title %> </h1>
+	<h2>By: <%= @recipe.user.email %> </h2>
     <div class="average-review-rating" data-score=<%= @average_review %>></div>
-    <span> Based on <%=@recipe.reviews.count %> reviews </span>
-    <p> <%= @recipe.description %> </p>
+    <span class="number-of-reviews"> Based on <%=@recipe.reviews.count %> reviews </span>
+    <p class="recipe-desc"> <%= @recipe.description %> </p>
+    <p>
+  
+
+<h3>Ingredients</h3>
+<ul>
+	<% for @ingredient in @recipe.ingredients %>
+		<li><%= @ingredient.content %></li>
+
+	<% end %>
+</ul>
+
+<h3>Steps</h3>
+<ol>
+	<% for @step in @recipe.steps %>
+		<li><%= @step.direction %></li>
+	<% end %>
+</ol>
+</div>
+
+</div>
+</div>
 </div>
 
 
@@ -18,33 +40,35 @@
 <div class="row">
 
 	<div class="col-md-4">
+    <div class="reviews">
 <!-- Where the reviews/ratings will go -->
+<h1>Reviews</h1>
     <%= render @recipe.reviews %>
         <div>
-            <%= link_to "Add Review", new_recipe_review_path(@recipe) %>
+            <%= link_to "Add Review", new_recipe_review_path(@recipe), class: "btn btn-custom" %>
 
-
+</div>
         </div>
 
     </div>	
 
 </div>
 
+<div class="links btn-group">
 
-
-<%= link_to "Back", root_path %>
+<%= link_to "Back", root_path, class: "btn btn-custom" %>
 
 
 <% if user_signed_in? %>
 
 <% if @recipe.user_id == current_user.id %>
 
-<%= link_to "Edit", edit_recipe_path(@recipe) %>
-<%= link_to "Delete", recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure?" } %>
+<%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-custom"  %>
+<%= link_to "Delete", recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom"  %>
 
 <% end %>
 <% end %>
-
+</div>
 
 <script>
 	$('.review-rating').raty({

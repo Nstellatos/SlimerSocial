@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
     before_action :find_recipe, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:new, :edit]
     def index 
         @recipes = Recipe.all.order("created_at DESC")
     end
@@ -45,7 +46,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params 
-        params.require(:recipe).permit(:title, :description, :recipe_img)
+        params.require(:recipe).permit(:title, :description, :recipe_img, ingredients_attributes:[:id, :content, :_destroy], steps_attributes:[:id, :direction, :_destroy])
     end
 
     def find_recipe 

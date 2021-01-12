@@ -2,5 +2,26 @@
 <%= f.file_field :recipe_img %>
 <%= f.input :title, label: "Recipe Title" %>
 <%= f.input :description %>
-<%= f.button :submit %>
+
+
+
+
+<h3>Add Ingredients</h3>
+     <%= f.simple_fields_for :ingredients do |ingredient| %>
+      <%= render 'ingredient_fields', f: ingredient %>
+    <% end %>
+
+    <div class="links">
+     <%= link_to_add_association 'Add Ingredient', f, :ingredients %>
+   </div>
+
+   <h3>Add Steps</h3>
+     <%= f.simple_fields_for :steps do |step| %>
+      <%= render 'step_fields', f: step %>
+    <% end %>
+    <div class="links">
+     <%= link_to_add_association 'Add Step', f, :steps %>
+   </div>
+   <br>
+   <%= f.button :submit, class: "btn-custom2" %>
 <% end %>
